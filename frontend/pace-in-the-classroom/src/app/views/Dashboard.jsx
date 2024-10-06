@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-// import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/SearchBar";
 import GroupForm from "../components/GroupForm";
 import SwipeCards from "../components/SwipeCards";
 import CommitmentCardForm from "../components/CommitmentCardForm"; // Ensure this path is correct
@@ -58,7 +58,7 @@ export function Component() {
                 <div className="flex justify-between">
                     {/* SearchBar on the left */}
                     <div className="w-1/3 p-2">
-                        
+                        <SearchBar onSelectGroup={handleSelectGroup} />
                     </div>
 
                     {/* Forms on the right */}
