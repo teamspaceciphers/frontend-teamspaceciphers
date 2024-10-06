@@ -50,7 +50,7 @@ const SearchBar = ({ onSelectGroup }) => {
 
     const fetchCommitmentsForGroup = async (group) => {
         try {
-            const response = await axios.get(`http://localhost:8080/groups/${group._id}/commitments`);
+            const response = await axios.get(`${api}/groups/${group._id}/commitments`);
             onSelectGroup(group, response.data);
         } catch (error) {
             console.error("Error fetching commitments:", error);
