@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const api = import.meta.env.VITE_BACKEND_API;
+
 const CommitmentCardForm = ({ selectedGroup }) => {
     const [newCommitment, setNewCommitment] = useState({
         title: "",
@@ -14,7 +16,7 @@ const CommitmentCardForm = ({ selectedGroup }) => {
         e.preventDefault();
         try {
             // Post the new commitment to the backend
-            const response = await axios.post(`http://localhost:8080/groups/${selectedGroup._id}/commitments`, newCommitment);
+            const response = await axios.post(`${apiß}/groups/${selectedGroup._id}/commitments`, newCommitment);
             console.log("New commitment added:", response.data);
             setFeedbackMessage("Commitment added successfully!"); // Set success message
             // Reset commitment form after submission

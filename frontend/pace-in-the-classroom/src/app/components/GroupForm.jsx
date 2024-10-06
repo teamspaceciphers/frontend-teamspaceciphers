@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const api = import.meta.env.VITE_BACKEND_API;
+
 const GroupForm = () => {
     const [groupData, setGroupData] = useState({
         name: "",
@@ -22,7 +24,7 @@ const GroupForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:8080/groups", groupData);
+            const response = await axios.post(`${api}/group`, groupData);
             console.log("Group created:", response.data);
             setError(""); // Clear error
             setSuccessMessage("Group created successfully!"); // Set success message

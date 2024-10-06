@@ -8,6 +8,8 @@ import MapControls from './MapControls';
 import '../styling/NewMap.css'; // Custom styles if any
 import { useNavigate } from 'react-router-dom'; // For navigation
 
+const api = import.meta.env.VITE_BACKEND_API;
+
 function NewMap() {
   const [data, setData] = useState({ latitudes: [], longitudes: [], data_values: [] });
   const [startLat, setStartLat] = useState(-90);
@@ -38,7 +40,7 @@ function NewMap() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/data?start_lat=${startLat}&start_lon=${startLon}&lat_chunk_size=${latChunkSize}&lon_chunk_size=${lonChunkSize}&dataset=${dataset}`);
+        const response = await axios.get(`${api}/api/data?start_lat=${startLat}&start_lon=${startLon}&lat_chunk_size=${latChunkSize}&lon_chunk_size=${lonChunkSize}&dataset=${dataset}`);
         if (response.data && response.data.latitudes.length > 0) {
           setData((prevData) => ({
             latitudes: [...prevData.latitudes, ...response.data.latitudes],

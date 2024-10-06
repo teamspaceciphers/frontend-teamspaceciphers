@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import axios from "axios";
 
+const api = import.meta.env.VITE_BACKEND_API;
+
 const SwipeCards = () => {
     const [groups, setGroups] = useState([]);
     const [selectedGroupId, setSelectedGroupId] = useState(null);
@@ -22,7 +24,7 @@ const SwipeCards = () => {
     useEffect(() => {
         const fetchGroups = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/groups");
+                const response = await axios.get(`${api}/groups`);
                 const groupsWithImages = response.data.map((group) => ({
                     ...group,
                     imgUrl: imageUrls[Math.floor(Math.random() * imageUrls.length)],
@@ -39,7 +41,7 @@ const SwipeCards = () => {
     const fetchCommitmentsForGroup = async (groupId) => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:8080/groups/${groupId}/commitments`);
+            const response = await axios.get(`${api}/groups/${groupId}/commitments`);
             setCommitments(response.data);
         } catch (error) {
             console.error("Error fetching commitments:", error);

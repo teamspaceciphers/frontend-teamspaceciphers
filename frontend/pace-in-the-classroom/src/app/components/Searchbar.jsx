@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const api = import.meta.env.VITE_BACKEND_API;
+
 const SearchBar = ({ onSelectGroup }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
@@ -25,7 +27,7 @@ const SearchBar = ({ onSelectGroup }) => {
         }
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:8080/groups/search?name=${query}`);
+            const response = await axios.get(`${api}/groups/search?name=${query}`);
             setSearchResults(Array.isArray(response.data) ? response.data : []);
         } catch (error) {
             console.error("Error fetching groups:", error);
